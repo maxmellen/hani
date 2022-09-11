@@ -12,7 +12,7 @@ const row = ({ trad, simp, shin }: Hani) => {
   ;[
     { lang: 'zh-Hans', label: simp },
     { lang: 'zh-Hant', label: trad },
-    { lang: 'ja-Japn', label: shin },
+    { lang: 'ja', label: shin },
   ].forEach(({ lang, label }) => {
     const td = el('td')
     tr.append(td)
