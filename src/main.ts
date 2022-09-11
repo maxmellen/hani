@@ -1,23 +1,42 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import { setupCounter } from './counter'
+import { el, q } from './dom'
+import { hani, Hani } from './hani'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+const main = q('main')!
+const table = el('table')
+const thead = el('thead')
+const tbody = el('tbody')
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+const row = ({ trad, simp, shin }: Hani) => {
+  const tr = el('tr')
+  tbody.append(tr)
+  ;[
+    { lang: 'zh-Hans', label: simp },
+    { lang: 'zh-Hant', label: trad },
+    { lang: 'ja-Japn', label: shin },
+  ].forEach(({ lang, label }) => {
+    const td = el('td')
+    tr.append(td)
+    td.lang = lang
+
+    if (label !== '　') {
+      td.textContent = label
+    } else {
+      td.style.opacity = '.67'
+      td.textContent = trad
+    }
+  })
+
+  return tr
+}
+
+main.append(table)
+table.append(thead)
+table.append(tbody)
+
+thead.append(row({ trad: '正', simp: '简', shin: '日' }))
+
+hani
+  .sort(() => Math.random() - 0.5)
+  .forEach((han) => {
+    tbody.append(row(han))
+  })
