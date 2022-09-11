@@ -1,4 +1,4 @@
-(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))i(n);new MutationObserver(n=>{for(const e of n)if(e.type==="childList")for(const o of e.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function s(n){const e={};return n.integrity&&(e.integrity=n.integrity),n.referrerpolicy&&(e.referrerPolicy=n.referrerpolicy),n.crossorigin==="use-credentials"?e.credentials="include":n.crossorigin==="anonymous"?e.credentials="omit":e.credentials="same-origin",e}function i(n){if(n.ep)return;n.ep=!0;const e=s(n);fetch(n.href,e)}})();const u=(...t)=>document.querySelector(...t),a=(...t)=>document.createElement(...t),f=`# Source: https://en.wikipedia.org/wiki/Differences_between_Shinjitai_and_Simplified_characters
+(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))i(n);new MutationObserver(n=>{for(const t of n)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function s(n){const t={};return n.integrity&&(t.integrity=n.integrity),n.referrerpolicy&&(t.referrerPolicy=n.referrerpolicy),n.crossorigin==="use-credentials"?t.credentials="include":n.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(n){if(n.ep)return;n.ep=!0;const t=s(n);fetch(n.href,t)}})();const u=(...e)=>document.querySelector(...e),a=(...e)=>document.createElement(...e),f=`# Source: https://en.wikipedia.org/wiki/Differences_between_Shinjitai_and_Simplified_characters
 \u5169\u4E24\u4E21
 \u60E1\u6076\u60AA
 \u55AE\u5355\u5358
@@ -26,7 +26,7 @@
 \u6B78\u5F52\u5E30
 \u6230\u6218\u6226
 \u64F4\u6269\u62E1
-\u64E7\u4E3E\u6319
+\u8209\u4E3E\u6319 # \u64E7
 \u5F9E\u4ECE\u5F93
 \u6232\u620F\u622F
 \u5C0D\u5BF9\u5BFE
@@ -88,9 +88,9 @@
 \u908A\u8FB9\u8FBA
 \u905E\u9012\u9013
 \u9072\u8FDF\u9045
-\u9115\u4E61\u90F7
+# \u9115\u4E61\u90F7
 \u9435\u94C1\u9244
-\u7926\u77FF\u9271
+\u7926\u77FF\u9271 # \u945B
 \u9322\u94B1\u92AD
 \u9452\u9274\u9451
 \u92B3\u9510\u92ED
@@ -112,4 +112,4 @@
 \u8FAF\u8FA9\u5F01
 \u6F80\u6DA9\u6E0B
 `,m=f.split(`
-`).slice(1,-1).map(t=>t.split("")).map(([t,r,s])=>({trad:t,simp:r,shin:s})),h=u("main"),c=a("table"),d=a("thead"),l=a("tbody"),p=({trad:t,simp:r,shin:s})=>{const i=a("tr");return l.append(i),[{lang:"zh-Hans",label:r},{lang:"zh-Hant",label:t},{lang:"ja-Japn",label:s}].forEach(({lang:n,label:e})=>{const o=a("td");i.append(o),o.lang=n,e!=="\u3000"?o.textContent=e:(o.style.opacity=".67",o.textContent=t)}),i};h.append(c);c.append(d);c.append(l);d.append(p({trad:"\u6B63",simp:"\u7B80",shin:"\u65E5"}));m.sort(()=>Math.random()-.5).forEach(t=>{l.append(p(t))});
+`).filter(e=>!e.startsWith("#")&&e.length>=3).map(e=>e.slice(0,3).split("")).map(([e,r,s])=>({trad:e,simp:r,shin:s})),h=u("main"),c=a("table"),d=a("thead"),l=a("tbody"),p=({trad:e,simp:r,shin:s})=>{const i=a("tr");return l.append(i),[{lang:"zh-Hans",label:r},{lang:"zh-Hant",label:e},{lang:"ja-Japn",label:s}].forEach(({lang:n,label:t})=>{const o=a("td");i.append(o),o.lang=n,t!=="\u3000"?o.textContent=t:(o.style.opacity=".67",o.textContent=e)}),i};h.append(c);c.append(d);c.append(l);d.append(p({trad:"\u6B63",simp:"\u7B80",shin:"\u65E5"}));m.sort(()=>Math.random()-.5).forEach(e=>{l.append(p(e))});
