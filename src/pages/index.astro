@@ -1,11 +1,7 @@
----
-import { hani } from '../lib/hani'
----
-
 <html lang="zh-Hant">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/hani/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>正簡日漢字對照</title>
@@ -33,32 +29,42 @@ import { hani } from '../lib/hani'
           </tr>
         </thead>
         <tbody class="text-7xl sm:text-9xl">
-          {
-            hani.map(({ simp, trad, shin }) => (
-              <tr>
-                <td
-                  class="py-6 pl-6 pr-3 border-b border-slate-400 sm:py-12 sm:pl-12 sm:pr-6"
-                  lang="zh-Hans"
-                >
-                  {simp}
-                </td>
-                <td
-                  class="py-6 pl-3 pr-3 border-b border-slate-400 sm:py-12 sm:pl-6 sm:pr-6"
-                  lang="zh-Hant"
-                >
-                  {trad}
-                </td>
-                <td
-                  class="py-6 pl-3 pr-6 border-b border-slate-400 sm:py-12 sm:pl-6 sm:pr-12"
-                  lang="ja-Jpan"
-                >
-                  {shin}
-                </td>
-              </tr>
-            ))
-          }
+          <template>
+            <tr>
+              <td
+                class="py-6 pl-6 pr-3 border-b border-slate-400 sm:py-12 sm:pl-12 sm:pr-6"
+                lang="zh-Hans"
+              >
+              </td>
+              <td
+                class="py-6 pl-3 pr-3 border-b border-slate-400 sm:py-12 sm:pl-6 sm:pr-6"
+                lang="zh-Hant"
+              >
+              </td>
+              <td
+                class="py-6 pl-3 pr-6 border-b border-slate-400 sm:py-12 sm:pl-6 sm:pr-12"
+                lang="ja-Jpan"
+              >
+              </td>
+            </tr>
+          </template>
         </tbody>
       </table>
     </main>
+    <script>
+      import { hani } from '../lib/hani'
+
+      const template = document.querySelector('template')!
+      const parent = template.parentNode!
+      template.remove()
+
+      for (const { simp, trad, shin } of hani.sort(() => Math.random() - 0.5)) {
+        const tr = template.content.cloneNode(true) as HTMLTableRowElement
+        tr.querySelector('[lang="zh-Hans"]')!.textContent = simp
+        tr.querySelector('[lang="zh-Hant"]')!.textContent = trad
+        tr.querySelector('[lang="ja-Jpan"]')!.textContent = shin
+        parent.append(tr)
+      }
+    </script>
   </body>
 </html>
