@@ -1,4 +1,4 @@
-import txt from './wiki.txt?raw'
+import txt from './hani.txt?raw'
 
 export type Hani = Record<'trad' | 'simp' | 'shin', string>
 export const hani: Hani[] = txt
