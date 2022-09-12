@@ -1,5 +1,5 @@
 ---
-import HaniTable from '../components/HaniTable.astro'
+import HaniTable from '../components/HaniTable'
 ---
 
 <html lang="zh-Hant">
@@ -13,9 +13,11 @@ import HaniTable from '../components/HaniTable.astro'
   <body
     class="text-slate-700 bg-slate-100 dark:text-slate-200 dark:bg-slate-900"
   >
-    <main class="my-12 space-y-6 text-center sm:my-24 sm:space-y-12">
-      <h1 class="text-4xl font-bold sm:text-6xl">正簡日漢字對照</h1>
-      <HaniTable client:load />
+    <main class="my-12 text-center sm:my-24">
+      <h1 class="mb-6 text-4xl font-bold sm:mb-12 sm:text-6xl">
+        正簡日漢字對照
+      </h1>
+      <HaniTable client:only="preact" />
     </main>
   </body>
 </html>
